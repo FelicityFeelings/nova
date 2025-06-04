@@ -1,243 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>Nova Network</title>
-	  <link rel="icon" type="image/x-icon" href="nova.png">
-	<script src="https://cdn.tailwindcss.com"></script>
-	<script src="https://unpkg.com/lucide@latest"></script>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
-	<style>
-		:root {
-			--gradient-start: #FF2E91;
-			--gradient-mid: #FF7B5C;
-			--gradient-end: #FF5C00;
-		}
-
-		body {
-			background-color: #120314;
-			transition: filter 0.3s ease;
-			margin: 0;
-		}
-
-		body.sidebar-hovered .content {
-			filter: blur(5px);
-		}
-
-		#sidebar {
-			position: fixed;
-			top: 0;
-			left: 0;
-			height: 100vh;
-			width: 4rem;
-			transition: width 0.3s ease;
-			z-index: 20;
-			background-color: black;
-			color: white;
-			padding: 1rem 0;
-			overflow: hidden;
-		}
-
-		.sidebar-scroll {
-			display: flex;
-			flex-direction: column;
-			height: 100%;
-			overflow-y: auto;
-			width: 100%;
-		}
-
-		#sidebar:hover {
-			width: 12rem;
-		}
-
-		#sidebar button {
-			display: flex;
-			align-items: center;
-			width: 100%;
-			padding: 0.5rem 1rem;
-			color: white;
-			background: none;
-			border: none;
-			cursor: pointer;
-			font-size: 1rem;
-			font-weight: 500;
-			transition: background-color 0.2s ease, color 0.2s ease;
-			border-radius: 0.5rem;
-			position: relative;
-			overflow: hidden;
-		}
-
-		#sidebar button::after {
-			content: "";
-			position: absolute;
-			inset: 0;
-			background-color: rgba(255, 255, 255, 0.2);
-			opacity: 0;
-			transition: opacity 0.3s ease;
-			border-radius: 0.5rem;
-			z-index: -1;
-		}
-
-		#sidebar button:hover::after {
-			opacity: 1;
-		}
-
-		#sidebar button:hover {
-			color: #ffe0f0;
-		}
-
-		#sidebar svg,
-		#sidebar img.icon {
-			width: 28px;
-			height: 28px;
-			flex-shrink: 0;
-			display: block;
-			filter: brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(0%) hue-rotate(93deg) brightness(105%) contrast(105%);
-		}
-
-		.label {
-			opacity: 0;
-			transform: translateX(-10px);
-			margin-left: 0;
-			transition: opacity 0.3s ease, transform 0.3s ease, margin-left 0.3s ease, color 0.3s ease;
-			white-space: nowrap;
-			color: white;
-		}
-
-		#sidebar:hover .label {
-			opacity: 1;
-			transform: translateX(0);
-			margin-left: 1rem;
-		}
-
-		#sidebar button:hover .label {
-			color: #ffe0f0;
-			transform: translateX(6px);
-		}
-
-		.content {
-			margin-left: 4rem;
-			transition: filter 0.3s ease;
-			height: 100vh;
-			overflow: auto;
-		}
-
-		#bottomButtons {
-			display: flex;
-			flex-direction: column;
-			align-items: flex-start;
-			width: 100%;
-			margin-top: auto;
-			gap: 0.75rem;
-			padding: 0 1rem;
-		}
-
-		#fullscreenBtn .label {
-			opacity: 0;
-		}
-
-		#sidebar:hover #fullscreenBtn .label {
-			opacity: 1;
-			transform: translateX(0);
-			margin-left: 1rem;
-		}
-
-		#fullscreenBtn .icon {
-			filter: none;
-		}
-	</style>
-</head>
-
-<body class="flex h-screen">
-	<div id="sidebar">
-		<div class="sidebar-scroll">
-			<!-- Top buttons -->
-			<div class="flex flex-col items-start gap-3 justify-start w-full">
-				<button onclick="loadIframe('https://polarrrrrr.neocities.org/nova/nova')" aria-label="Home">
-          <img src="https://img.icons8.com/?size=100&id=7NYOrZQoHLa1&format=png&color=ffffff" alt="Home Icon" class="icon" />
-          <span class="label">Home</span>
-        </button>
-
-				<button onclick="loadIframe('https://example.com/')" aria-label="Search">
-          <img src="https://img.icons8.com/?size=100&id=2sWrwEXiaegS&format=png&color=ffffff" alt="Search Icon" class="icon" />
-          <span class="label">Search</span>
-        </button>
-
-				<button onclick="loadIframe('https://example.com')" aria-label="Games">
-          <img src="https://img.icons8.com/?size=100&id=C6pSWdxiAGbl&format=png&color=ffffff" alt="Games Icon" class="icon" />
-          <span class="label">Games</span>
-        </button>
-
-				<button onclick="loadIframe('https://example.com/')" aria-label="Apps">
-          <img src="https://img.icons8.com/?size=100&id=JCtrMfKlpJVk&format=png&color=ffffff" alt="Apps Icon" class="icon" />
-          <span class="label">Apps</span>
-        </button>
-
-				<button onclick="loadIframe('https://example.com/')" aria-label="Exploits">
-          <img src="https://img.icons8.com/?size=100&id=CDjGigSJvEH8&format=png&color=ffffff" alt="Exploits Icon" class="icon" />
-          <span class="label">Exploits</span>
-        </button>
-
-				<button onclick="loadIframe('https://example.com/')" aria-label="Movies">
-          <img src="https://img.icons8.com/?size=100&id=bBgwYTIo4Jtz&format=png&color=000000" alt="Movies Icon" class="icon" />
-          <span class="label">Movies</span>
-        </button>
-
-				<button onclick="loadIframe('https://example.com/')" aria-label="Extras">
-          <img src="https://img.icons8.com/?size=100&id=QADawoQS3Rcg&format=png&color=ffffff" alt="Extras Icon" class="icon" />
-          <span class="label">Extras</span>
-        </button>
-
-				<button onclick="loadIframe('https://example.com/serttings')" aria-label="Settings">
-          <img src="https://img.icons8.com/?size=100&id=Zydyx4gBcOrY&format=png&color=000000" alt="Settings Icon" class="icon" />
-          <span class="label">Settings</span>
-        </button>
-			</div>
-
-			<!-- Bottom button -->
-			<div id="bottomButtons">
-				<button id="fullscreenBtn" aria-label="Fullscreen">
-          <img src="https://img.icons8.com/?size=100&id=LMDhZAbV4zOg&format=png&color=000000" alt="Fullscreen Icon" class="icon" />
-          <span class="label">Fullscreen</span>
-        </button>
-			</div>
-		</div>
-	</div>
-
-	<div class="flex-1 content">
-		<iframe id="iframeViewer" src="https://polarrrrrr.neocities.org/nova/nova"
-			class="w-full h-full border-0"></iframe>
-	</div>
-
-	<script>
-		lucide.createIcons();
-
-    function loadIframe(url) {
-      document.getElementById("iframeViewer").src = url;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nova Math Tutorials</title>
+  <link rel="icon" href="nova.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    html {
+      scroll-behavior: smooth;
     }
+  </style>
+</head>
+<body class="bg-black text-white">
 
-    const sidebar = document.getElementById('sidebar');
-    sidebar.addEventListener('mouseenter', () => {
-      document.body.classList.add('sidebar-hovered');
-    });
-    sidebar.addEventListener('mouseleave', () => {
-      document.body.classList.remove('sidebar-hovered');
-    });
+  <!-- Navigation Bar -->
+  <nav class="bg-[#0d0d0d] px-6 py-4 flex justify-between items-center border-b border-gray-800 shadow fixed w-full top-0 z-20">
+    <div class="text-2xl font-bold text-white cursor-pointer">Nova Network</div>
+    <ul class="hidden md:flex space-x-6 text-sm text-gray-300">
+      <li><a href="#home" class="hover:text-white">Home</a></li>
+      <li><a href="#tutorials" class="hover:text-white">Tutorials</a></li>
+      <li><a href="#practice" class="hover:text-white">Practice</a></li>
+      <li><a href="#contact" class="hover:text-white">Contact</a></li>
+    </ul>
+    <a href="#" class="text-sm px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition">Login</a>
+  </nav>
 
-    document.getElementById('fullscreenBtn').addEventListener('click', () => {
-      const iframe = document.getElementById('iframeViewer');
-      if (!document.fullscreenElement) {
-        iframe.requestFullscreen().catch(err => {
-          alert(`Error attempting to enable fullscreen: ${err.message} (${err.name})`);
-        });
+  <!-- Spacer for fixed nav -->
+  <div id="home" class="pt-24"></div>
+
+  <!-- Hero Section -->
+  <header class="text-center py-16 px-6 md:px-0 max-w-4xl mx-auto">
+    <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-4">Your Journey to Math Excellence</h1>
+    <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto">Empowering students to learn, grow, and succeed through engaging, modern math tutorials.</p>
+  </header>
+
+  <!-- Why Nova Network -->
+  <section class="px-6 md:px-20 py-12 max-w-7xl mx-auto">
+    <h2 class="text-2xl font-semibold mb-8 border-b border-gray-700 pb-2">Why Nova Network?</h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+
+      <div class="bg-[#1a1a1a] p-6 rounded-xl shadow-lg border border-gray-700 hover:shadow-blue-500/30 transition-all">
+        <h3 class="text-xl font-semibold mb-2">Student-Centered Design</h3>
+        <p class="text-gray-400 text-sm">Our interface is built with students in mind — simple, clean, and distraction-free so learners can focus on what matters.</p>
+      </div>
+
+      <div class="bg-[#1a1a1a] p-6 rounded-xl shadow-lg border border-gray-700 hover:shadow-blue-500/30 transition-all">
+        <h3 class="text-xl font-semibold mb-2">Powerful Learning Tools</h3>
+        <p class="text-gray-400 text-sm">Nova provides visual aids, step-by-step breakdowns, and interactive elements that help make complex topics easier to grasp.</p>
+      </div>
+
+      <div class="bg-[#1a1a1a] p-6 rounded-xl shadow-lg border border-gray-700 hover:shadow-blue-500/30 transition-all">
+        <h3 class="text-xl font-semibold mb-2">For All Ages</h3>
+        <p class="text-gray-400 text-sm">Whether you’re in elementary school or college, Nova’s resources are tailored to fit your learning level and pace.</p>
+      </div>
+
+      <div class="bg-[#1a1a1a] p-6 rounded-xl shadow-lg border border-gray-700 hover:shadow-blue-500/30 transition-all">
+        <h3 class="text-xl font-semibold mb-2">Trusted by Educators</h3>
+        <p class="text-gray-400 text-sm">Teachers choose Nova for its reliability, ease of use, and impact on student performance.</p>
+      </div>
+
+      <div class="bg-[#1a1a1a] p-6 rounded-xl shadow-lg border border-gray-700 hover:shadow-blue-500/30 transition-all">
+        <h3 class="text-xl font-semibold mb-2">Always Free, Always Accessible</h3>
+        <p class="text-gray-400 text-sm">Nova is committed to making quality education available to everyone, at no cost.</p>
+      </div>
+
+      <div class="bg-[#1a1a1a] p-6 rounded-xl shadow-lg border border-gray-700 hover:shadow-blue-500/30 transition-all">
+        <h3 class="text-xl font-semibold mb-2">Continuously Evolving</h3>
+        <p class="text-gray-400 text-sm">We constantly update and improve Nova based on student feedback and educational research.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Tutorials Section -->
+  <section id="tutorials" class="px-6 md:px-20 py-12 max-w-4xl mx-auto border-t border-gray-800">
+    <h2 class="text-3xl font-semibold mb-6">Affordable Math Tutorials</h2>
+    <p class="text-gray-400 mb-6">
+      Get expert math lessons that are easy to understand and budget-friendly. Purchase your tutorial instantly and start learning right away!
+    </p>
+
+    <div class="bg-[#1a1a1a] p-8 rounded-xl shadow-lg border border-gray-700 max-w-md mx-auto">
+      <h3 class="text-2xl font-semibold mb-4">Buy a Lesson</h3>
+      <p class="text-gray-400 mb-6">Each tutorial costs just <span class="font-bold text-blue-500">$9.99</span>. Choose your topic and master math at your own pace.</p>
+
+      <form class="space-y-4">
+        <label class="block text-gray-300" for="lessonTopic">Select Topic</label>
+        <select id="lessonTopic" class="w-full bg-black border border-gray-600 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option>Algebra Basics</option>
+          <option>Graphing & Coordinates</option>
+          <option>Word Problems</option>
+          <option>Percentages & Ratios</option>
+          <option>Order of Operations</option>
+        </select>
+
+        <button type="button" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded transition">
+          Buy Now
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Practice Section -->
+  <section id="practice" class="px-6 md:px-20 py-12 max-w-4xl mx-auto border-t border-gray-800">
+    <h2 class="text-3xl font-semibold mb-6">Practice Problems</h2>
+    <p class="text-gray-400 mb-6">
+      Hone your skills with our curated practice problems designed to reinforce key math concepts.
+    </p>
+    <ul class="list-disc list-inside text-gray-400 space-y-2 max-w-md mx-auto">
+      <li>Interactive quizzes with instant feedback</li>
+      <li>Step-by-step solutions for every problem</li>
+      <li>Problems covering all difficulty levels</li>
+      <li>Track your progress over time</li>
+    </ul>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="px-6 md:px-20 py-12 max-w-4xl mx-auto border-t border-gray-800">
+    <h2 class="text-3xl font-semibold mb-6">Contact Us</h2>
+    <form id="contactForm" class="space-y-6 max-w-md mx-auto bg-[#1a1a1a] p-8 rounded-xl shadow-lg border border-gray-700" autocomplete="off">
+      <label class="block text-gray-300" for="name">Name</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        class="w-full bg-black border border-gray-600 rounded px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+        placeholder="Your name"
+        required
+      />
+
+      <label class="block text-gray-300" for="email">Email</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        class="w-full bg-black border border-gray-600 rounded px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+        placeholder="your.email@example.com"
+        required
+      />
+
+      <label class="block text-gray-300" for="message">Message</label>
+      <textarea
+        id="message"
+        name="message"
+        rows="4"
+        class="w-full bg-black border border-gray-600 rounded px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+        placeholder="Write your message here..."
+        required
+      ></textarea>
+
+      <button
+        type="submit"
+        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded transition"
+      >
+        Send Message
+      </button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center py-8 text-sm text-gray-500 border-t border-gray-800 mt-12 max-w-7xl mx-auto">
+    &copy; 2025 Nova Learning. All rights reserved.
+  </footer>
+
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const name = event.target.name.value.trim().toLowerCase();
+      const email = event.target.email.value.trim().toLowerCase();
+      const message = event.target.message.value.trim();
+
+      if (name === 'novaisgoat' && email === 'novaisgoat@gmail.com' && message.length > 0) {
+        // Secret valid info: redirect to thank you page
+        window.location.href = 'nova.html';
       } else {
-        document.exitFullscreen();
+        // Otherwise, silently redirect to nobody
+        window.location.href = '#';
       }
     });
-	</script>
-</body>
+  </script>
 
+</body>
 </html>
+
