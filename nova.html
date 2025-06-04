@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Nova Network</title>
+	  <link rel="icon" type="image/x-icon" href="nova.png">
+	<script src="https://cdn.tailwindcss.com"></script>
+	<script src="https://unpkg.com/lucide@latest"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+	<style>
+		:root {
+			--gradient-start: #FF2E91;
+			--gradient-mid: #FF7B5C;
+			--gradient-end: #FF5C00;
+		}
+
+		body {
+			background-color: #120314;
+			transition: filter 0.3s ease;
+			margin: 0;
+		}
+
+		body.sidebar-hovered .content {
+			filter: blur(5px);
+		}
+
+		#sidebar {
+			position: fixed;
+			top: 0;
+			left: 0;
+			height: 100vh;
+			width: 4rem;
+			transition: width 0.3s ease;
+			z-index: 20;
+			background-color: black;
+			color: white;
+			padding: 1rem 0;
+			overflow: hidden;
+		}
+
+		.sidebar-scroll {
+			display: flex;
+			flex-direction: column;
+			height: 100%;
+			overflow-y: auto;
+			width: 100%;
+		}
+
+		#sidebar:hover {
+			width: 12rem;
+		}
+
+		#sidebar button {
+			display: flex;
+			align-items: center;
+			width: 100%;
+			padding: 0.5rem 1rem;
+			color: white;
+			background: none;
+			border: none;
+			cursor: pointer;
+			font-size: 1rem;
+			font-weight: 500;
+			transition: background-color 0.2s ease, color 0.2s ease;
+			border-radius: 0.5rem;
+			position: relative;
+			overflow: hidden;
+		}
+
+		#sidebar button::after {
+			content: "";
+			position: absolute;
+			inset: 0;
+			background-color: rgba(255, 255, 255, 0.2);
+			opacity: 0;
+			transition: opacity 0.3s ease;
+			border-radius: 0.5rem;
+			z-index: -1;
+		}
+
+		#sidebar button:hover::after {
+			opacity: 1;
+		}
+
+		#sidebar button:hover {
+			color: #ffe0f0;
+		}
+
+		#sidebar svg,
+		#sidebar img.icon {
+			width: 28px;
+			height: 28px;
+			flex-shrink: 0;
+			display: block;
+			filter: brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(0%) hue-rotate(93deg) brightness(105%) contrast(105%);
+		}
+
+		.label {
+			opacity: 0;
+			transform: translateX(-10px);
+			margin-left: 0;
+			transition: opacity 0.3s ease, transform 0.3s ease, margin-left 0.3s ease, color 0.3s ease;
+			white-space: nowrap;
+			color: white;
+		}
+
+		#sidebar:hover .label {
+			opacity: 1;
+			transform: translateX(0);
+			margin-left: 1rem;
+		}
+
+		#sidebar button:hover .label {
+			color: #ffe0f0;
+			transform: translateX(6px);
+		}
+
+		.content {
+			margin-left: 4rem;
+			transition: filter 0.3s ease;
+			height: 100vh;
+			overflow: auto;
+		}
+
+		#bottomButtons {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			width: 100%;
+			margin-top: auto;
+			gap: 0.75rem;
+			padding: 0 1rem;
+		}
+
+		#fullscreenBtn .label {
+			opacity: 0;
+		}
+
+		#sidebar:hover #fullscreenBtn .label {
+			opacity: 1;
+			transform: translateX(0);
+			margin-left: 1rem;
+		}
+
+		#fullscreenBtn .icon {
+			filter: none;
+		}
+	</style>
+</head>
+
+<body class="flex h-screen">
+	<div id="sidebar">
+		<div class="sidebar-scroll">
+			<!-- Top buttons -->
+			<div class="flex flex-col items-start gap-3 justify-start w-full">
+				<button onclick="loadIframe('https://polarrrrrr.neocities.org/nova/nova')" aria-label="Home">
+          <img src="https://img.icons8.com/?size=100&id=7NYOrZQoHLa1&format=png&color=ffffff" alt="Home Icon" class="icon" />
+          <span class="label">Home</span>
+        </button>
+
+				<button onclick="loadIframe('https://example.com/')" aria-label="Search">
+          <img src="https://img.icons8.com/?size=100&id=2sWrwEXiaegS&format=png&color=ffffff" alt="Search Icon" class="icon" />
+          <span class="label">Search</span>
+        </button>
+
+				<button onclick="loadIframe('https://example.com')" aria-label="Games">
+          <img src="https://img.icons8.com/?size=100&id=C6pSWdxiAGbl&format=png&color=ffffff" alt="Games Icon" class="icon" />
+          <span class="label">Games</span>
+        </button>
+
+				<button onclick="loadIframe('https://example.com/')" aria-label="Apps">
+          <img src="https://img.icons8.com/?size=100&id=JCtrMfKlpJVk&format=png&color=ffffff" alt="Apps Icon" class="icon" />
+          <span class="label">Apps</span>
+        </button>
+
+				<button onclick="loadIframe('https://example.com/')" aria-label="Exploits">
+          <img src="https://img.icons8.com/?size=100&id=CDjGigSJvEH8&format=png&color=ffffff" alt="Exploits Icon" class="icon" />
+          <span class="label">Exploits</span>
+        </button>
+
+				<button onclick="loadIframe('https://example.com/')" aria-label="Movies">
+          <img src="https://img.icons8.com/?size=100&id=bBgwYTIo4Jtz&format=png&color=000000" alt="Movies Icon" class="icon" />
+          <span class="label">Movies</span>
+        </button>
+
+				<button onclick="loadIframe('https://example.com/')" aria-label="Extras">
+          <img src="https://img.icons8.com/?size=100&id=QADawoQS3Rcg&format=png&color=ffffff" alt="Extras Icon" class="icon" />
+          <span class="label">Extras</span>
+        </button>
+
+				<button onclick="loadIframe('https://example.com/serttings')" aria-label="Settings">
+          <img src="https://img.icons8.com/?size=100&id=Zydyx4gBcOrY&format=png&color=000000" alt="Settings Icon" class="icon" />
+          <span class="label">Settings</span>
+        </button>
+			</div>
+
+			<!-- Bottom button -->
+			<div id="bottomButtons">
+				<button id="fullscreenBtn" aria-label="Fullscreen">
+          <img src="https://img.icons8.com/?size=100&id=LMDhZAbV4zOg&format=png&color=000000" alt="Fullscreen Icon" class="icon" />
+          <span class="label">Fullscreen</span>
+        </button>
+			</div>
+		</div>
+	</div>
+
+	<div class="flex-1 content">
+		<iframe id="iframeViewer" src="https://polarrrrrr.neocities.org/nova/nova"
+			class="w-full h-full border-0"></iframe>
+	</div>
+
+	<script>
+		lucide.createIcons();
+
+    function loadIframe(url) {
+      document.getElementById("iframeViewer").src = url;
+    }
+
+    const sidebar = document.getElementById('sidebar');
+    sidebar.addEventListener('mouseenter', () => {
+      document.body.classList.add('sidebar-hovered');
+    });
+    sidebar.addEventListener('mouseleave', () => {
+      document.body.classList.remove('sidebar-hovered');
+    });
+
+    document.getElementById('fullscreenBtn').addEventListener('click', () => {
+      const iframe = document.getElementById('iframeViewer');
+      if (!document.fullscreenElement) {
+        iframe.requestFullscreen().catch(err => {
+          alert(`Error attempting to enable fullscreen: ${err.message} (${err.name})`);
+        });
+      } else {
+        document.exitFullscreen();
+      }
+    });
+	</script>
+</body>
+
+</html>
